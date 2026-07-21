@@ -1,0 +1,10 @@
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie",
+	"forwardPorts": [
+		5173
+	],
+	"postCreateCommand": "npm config set ignore-scripts true && npm config set audit true && npm config set min-release-age 3 && npm config set save-exact true"
+	// && npm install --ignore-scripts
+}
