@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(132deg,
+      #498af5 0%,
+      #498af5 50%,
+      #f1ecf2 100%);
+  background-attachment: fixed;
+}
+
 /* :root {
   --text: #6b6375;
   --text-h: #08060d;
