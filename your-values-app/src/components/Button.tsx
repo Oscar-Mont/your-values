@@ -1,13 +1,18 @@
 import type { ReactNode } from "react"
-
 type ButtonProps = {
     children: ReactNode
     variant: string
+    onClick?: () => void
+    type?: "button" | "submit"
 }
 //add variant prop: start, primery, secondary
-export default function Button({ children, variant }: ButtonProps) {
+export default function Button({ children, variant, onClick, type }: ButtonProps) {
     return (
-        <button className={applyVariant(variant)}>{children}</button>
+        <button className={applyVariant(variant)}
+            onClick={onClick}
+            type={type ?? "button"}>
+            {children}
+        </button>
     )
 }
 
@@ -20,6 +25,9 @@ function applyVariant(variant: string) {
         return "bg-cyan-500 rounded-lg py-2 px-4 text-2xl text-violet-50 font-semibold"
     }
     if (variant === "secondary") {
-        return "bg-violet-400 rounded-lg py-2 px-4 text-2xl text-violet-50 font-semibold"
+        return "bg-violet-400 rounded-lg py-4 px-4 text-2xl text-violet-50 font-semibold"
+    }
+    if (variant === "selected") {
+        return "bg-green-500 rounded-lg py-2 px-4 text-2xl text-violet-50 font-semibold"
     }
 }
