@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import ValuesGrid from "../components/ValuesGrid";
 import type { Value } from "../data/values";
 import { values } from "../data/values";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 
@@ -44,12 +44,13 @@ export default function ValuesTestPage() {
     }
 
     function handleContinue() {
+        console.log("selected:", selectedValues)
+        console.log("remaining before update:", remainingValues)
         //check if 5 are selected
         if (selectedValues.length === 5) {
             setRemainingValues(prev => [...prev, ...selectedValues])
             setSelectedValues([])
             setRoundValues([])
-            getRoundValues()
             return
         }
         if (selectedValues.length < 5) {
@@ -57,6 +58,10 @@ export default function ValuesTestPage() {
             return
         }
     }
+
+    useEffect(() => {
+        getRoundValues()
+    }, [remainingValues])
 
     return (
         <div className="flex flex-col flex-1 min-h-screen">
@@ -68,7 +73,7 @@ export default function ValuesTestPage() {
                 </div>
                 {/* container
             round counter*/}
-                <div className="self-end m-10">{remainingValues.length === 5 ? <Link to="/results" className="bg-cyan-500 rounded-lg py-2 px-4 text-2xl text-violet-50 font-semibold">Continue</Link> :
+                <div className="self-end m-10">{remainingValues.length === 5 ? <Link to="/results" className="bg-cyan-500 rounded-lg py-2 px-4 text-2xl text-violet-50 font-semibold" state={{ finalValues: remainingValues }}>Continue</Link> :
                     <Button variant="start" onClick={() => handleContinue()}>Continue</Button>}
                 </div>
             </main>
