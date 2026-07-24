@@ -1,5 +1,7 @@
 import { useLocation } from "react-router"
 import type { Value } from "../data/values"
+
+
 export default function ResultsPage() {
     const location = useLocation()
     const { finalValues } = location.state as { finalValues: Value[] }
